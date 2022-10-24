@@ -1,6 +1,6 @@
 Bygge spillefladen:
 
-Den originale spilleflade består af et 5x5 grid.
+Spillefladen består af et 5x4 grid.
 
 Opret array med dataobjects som skal være de kortsider som starter med at ligge ned af og som skal matches
 
@@ -15,9 +15,6 @@ Opret array med dataobjects som skal være de kortsider som starter med at ligge
 Brug et loop der genere spillefladen igennem DOM
 
 CSS:
-Selve spillefladen kan laves i en grid og sørge for de scale op og ned.
-f.eks fra 1x1 til 8x8
-
 Kortene skal alle have den samme bagside og skal kunne flippes rundt.
 Alt det der foregår med bevægelse af kort skal have en transform.
 

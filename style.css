@@ -1,40 +1,61 @@
-.card:hover .cardInside {
-  transform: rotateY(180deg);
+.content {
+  transition: transform 1s;
 }
 
-.cardBack {
+.card:hover .content {
+  transform: rotateY(180deg);
+  transition: transform 0.5s;
+}
+
+.back {
   transform: rotateY(180deg);
 }
 
 .card {
-  background-color: transparent;
-  border: 1px solid black;
-  perspective: 1000px;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 
-.cardInside {
+.content {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 1s;
   transform-style: preserve-3d;
 }
 
-.cardBack img {
-  width: 100%;
-  height: 100%;
+.front {
+  background-color: black;
 }
 
-.cardFront {
-  background-color: rgb(0, 0, 0);
-}
-
-.cardFront, .cardBack {
+.front, .back {
   position: absolute;
-  width: 100%;
   height: 100%;
+  width: 100%;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+}
+.front img, .back img {
+  width: 150px;
+  height: 150px;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+}
+
+.flexCenter {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameContainer {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1%;
 }/*# sourceMappingURL=style.css.map */
