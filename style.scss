@@ -1,65 +1,76 @@
 //Cards
 
 //Animations
-.content{
-    transition: transform 1s;
+.content,
+.card {
+	transition: transform 1s;
 }
 
-.card:hover .content {
-    transform: rotateY( 180deg ) ;
-    transition: transform 0.5s;
+// .card.hover .content {
+// 	transform: rotateY(180deg);
+// 	transition: transform 0.5s;
+// }
+
+.flip {
+	transform: rotateY(180deg);
+	transition: transform 0.3s;
+	.content {
+		transform: rotateY(180deg);
+		transition: transform 0.3s;
+	}
 }
 
 .back {
-    transform: rotateY( 180deg );
+	transform: rotateY(180deg);
 }
 
 //Styling
 .card {
-    width: 150px;
-    height: 150px;
+	width: 150px;
+	height: 150px;
 }
 
 .content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
 }
 
-.front{
-    background-color: black;
+.front {
+	background-color: black;
 }
 
-.front, .back {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    backface-visibility: hidden;
-    img{
-        width: 150px;
-        height: 150px;
-    }
+.front,
+.back {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	backface-visibility: hidden;
+	img {
+		width: 150px;
+		height: 150px;
+	}
 }
 //Grid
 
-body{
-    height: 100vh;
-    margin: 0;
+body {
+	height: 100vh;
+	margin: 0;
 }
 
-.flexCenter{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.flexCenter {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-#gameContainer{
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 1%;
+#gameContainer {
+	max-width: 100%;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	gap: 1%;
 }

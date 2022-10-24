@@ -29,30 +29,26 @@ let createGame = () => {
 };
 createGame();
 
-
 let a = 0;
 let b = 0;
 const cardButtons = document.querySelectorAll(".card");
 cardButtons.forEach((card) => {
 	card.addEventListener("click", () => {
+		card.classList.add("flip");
+		//Grab card Ids
 		if (a == 0) {
 			a = card.id;
 		} else {
 			b = card.id;
-			evaluateCards(a, b);
+			//evaluates the values
+			if (a == b) {
+				console.log("congratulations they're matching!");
+			} else {
+				console.log("they're not matching");
+			}
 			//Reset after evaluating
 			a = 0;
 			b = 0;
 		}
 	});
 });
-
-let evaluateCards = (a, b) => {
-	if (a == b) {
-		console.log("Congratulations, they're matching");
-		return true;
-	} else {
-		console.log("they're not matching");
-		return false;
-	}
-};
