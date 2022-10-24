@@ -16,7 +16,7 @@ let cardsShuffled = doubled
 let createGame = () => {
 	cardsShuffled.forEach((card) => {
 		container.innerHTML += `
-        <div class="card">
+        <div class="card" id="${card.id}">
             <div class="content">
             <div class="front"></div>
                 <div class="back">
@@ -27,5 +27,32 @@ let createGame = () => {
         `;
 	});
 };
-
 createGame();
+
+
+let a = 0;
+let b = 0;
+const cardButtons = document.querySelectorAll(".card");
+cardButtons.forEach((card) => {
+	card.addEventListener("click", () => {
+		if (a == 0) {
+			a = card.id;
+		} else {
+			b = card.id;
+			evaluateCards(a, b);
+			//Reset after evaluating
+			a = 0;
+			b = 0;
+		}
+	});
+});
+
+let evaluateCards = (a, b) => {
+	if (a == b) {
+		console.log("Congratulations, they're matching");
+		return true;
+	} else {
+		console.log("they're not matching");
+		return false;
+	}
+};
