@@ -1,7 +1,11 @@
 let cards = [
 	{
 		id: 1,
-		picture: "placeholderUrl",
+		picture: "/img/bear.svg",
+	},
+	{
+		id: 2,
+		picture: "/img/bison.svg",
 	},
 ];
 
