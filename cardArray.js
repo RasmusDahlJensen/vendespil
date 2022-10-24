@@ -4,3 +4,5 @@ let cards = [
 		picture: "placeholderUrl",
 	},
 ];
+
+export default cards;
