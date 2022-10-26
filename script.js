@@ -56,10 +56,12 @@ renderGame();
 
 //Apply eventlisteners to all cards
 const buttons = document.querySelectorAll(".card");
+const compareThis = document.getElementById("comparethis");
 const buttonFunctionality = () => {
 	buttons.forEach((card) => {
 		card.addEventListener("click", () => {
 			playGame(event.target.parentElement.parentElement);
+			console.log(compareThis);
 		});
 	});
 };
