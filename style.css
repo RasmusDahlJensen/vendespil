@@ -3,6 +3,11 @@
   transition: transform 1s;
 }
 
+.card:hover .content {
+  transform: rotateY(180deg);
+  transition: transform 0.5s;
+}
+
 .flip {
   transform: rotateY(180deg);
   transition: transform 0.3s;
@@ -88,4 +93,13 @@ body {
 
 #score {
   margin-right: 50px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  height: 200px;
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */

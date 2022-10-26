@@ -1,4 +1,5 @@
 import cards from "./cardArray.js";
+
 //Intial site state
 const initialState = () => {
 	const root = document.getElementById("root");
@@ -69,6 +70,7 @@ let cardFlips = 0;
 let cardA = 0;
 let cardB = 0;
 let score = 0;
+
 const playGame = (card) => {
 	//Flipped card counter
 	cardFlips++;
@@ -105,15 +107,6 @@ const unFlip = () => {
 };
 let scoreboard = document.getElementById("score");
 
-//Start button
-const start = document.getElementById("startGame");
-start.addEventListener("click", () => {
-	const hideGame = document.getElementById("flexCenter");
-	start.style.display = "none";
-	hideGame.style.display = "";
-	timer();
-});
-
 //Timer
 
 const timer = () => {
@@ -137,3 +130,46 @@ const timer = () => {
 		}
 	}
 };
+
+//Ending
+
+window.addEventListener("click", () => {
+	console.log(score);
+	if (score == 10) {
+		showScore();
+		playAgain();
+		console.log("resetted");
+	}
+});
+
+const showScore = () => {
+	const buttonFlex = document.getElementsByClassName("flex");
+	const endScore = document.getElementById("showScore");
+	buttonFlex[0].style.display = "";
+	endScore.innerHTML = "Your score is: " + score;
+};
+
+const playAgain = () => {
+	const hideGame = document.getElementById("flexCenter");
+	const start = document.getElementById("startGame");
+	start.style.display = "";
+	start.innerHTML = "Play again?";
+	hideGame.style.display = "none";
+	let cardFlips = 0;
+	let cardA = 0;
+	let cardB = 0;
+	let score = 0;
+};
+
+const gameStart = () => {
+	const hideGame = document.getElementById("flexCenter");
+	start.style.display = "none";
+	hideGame.style.display = "";
+	buttonFlex[0].style.display = "none";
+	timer();
+};
+
+//Start button
+const start = document.getElementById("startGame");
+const buttonFlex = document.getElementsByClassName("flex");
+start.addEventListener("click", gameStart);
