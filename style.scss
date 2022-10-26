@@ -11,14 +11,14 @@
 // 	transition: transform 0.5s;
 // }
 
-// .flip {
-// 	transform: rotateY(180deg);
-// 	transition: transform 0.3s;
-// 	.content {
-// 		transform: rotateY(180deg);
-// 		transition: transform 0.3s;
-// 	}
-// }
+.flip {
+	transform: rotateY(180deg);
+	transition: transform 0.3s;
+	.content {
+		transform: rotateY(180deg);
+		transition: transform 0.3s;
+	}
+}
 
 .back {
 	transform: rotateY(180deg);
@@ -28,6 +28,7 @@
 .card {
 	width: 150px;
 	height: 150px;
+	position: relative;
 }
 
 .content {

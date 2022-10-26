@@ -13,7 +13,7 @@ let cardsShuffled = doubled
 	.map(({ card }) => card);
 
 //Prints out the given values as cards on the website
-let createGame = () => {
+let renderGame = () => {
 	cardsShuffled.forEach((card) => {
 		container.innerHTML += `
         <div class="card" id="${card.id}">
@@ -27,6 +27,27 @@ let createGame = () => {
         `;
 	});
 };
-createGame();
+renderGame();
 
-const 
+const buttons = document.querySelectorAll(".card");
+
+let cardFlips = 0;
+let cardA = 0;
+let cardB = 0;
+const playGame = (card) => {
+	card.classList.add("flip");
+	cardA == 0 ? (cardA = card.id) : (cardB = card.id);
+	cardFlips++;
+	if (cardFlips >= 2) {
+	}
+};
+
+const buttonFunctionality = () => {
+	buttons.forEach((card) => {
+		card.addEventListener("click", () => {
+			playGame(event.target.parentElement.parentElement);
+		});
+	});
+};
+
+buttonFunctionality();
