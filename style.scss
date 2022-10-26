@@ -6,11 +6,6 @@
 	transition: transform 1s;
 }
 
-// .card:hover .content {
-// 	transform: rotateY(180deg);
-// 	transition: transform 0.5s;
-// }
-
 .flip {
 	transform: rotateY(180deg);
 	transition: transform 0.3s;
@@ -68,12 +63,14 @@ body {
 	align-items: center;
 }
 
-.flexCenter {
+#flexCenter {
 	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+	gap: 25px;
 }
 
 #gameContainer {
@@ -82,4 +79,16 @@ body {
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(5, 1fr);
 	gap: 1%;
+}
+
+#timer {
+	display: flex;
+}
+
+.scoreContainer {
+	display: flex;
+}
+
+#score {
+	margin-right: 50px;
 }

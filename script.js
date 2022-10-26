@@ -1,15 +1,28 @@
 import cards from "./cardArray.js";
+//Intial site state
+const initialState = () => {
+	const root = document.getElementById("root");
+	root.innerHTML += `
+	<div id="flexCenter">
+		<div class="scoreContainer">
+			<div>Score:</div>
+			<div id="score">0</div>
+		<div id="timer">
+			<div id="minutes">00</div>
+			:
+			<div id="seconds">00</div>
+		</div>
+		</div>
+		<div>
+		</div>
+			<div id="gameContainer"></div>
+		</div>
+	</div>`;
+	const hideGame = document.getElementById("flexCenter");
+	hideGame.style.display = "none";
+};
 
-const root = document.getElementById("root");
-root.innerHTML = `
-<div class="scoreContainer">
-<div>Score:</div>
-<div id="score">0</div>
-</div>
-<div class="flexCenter">
-<div id="gameContainer"></div>
-</div>`;
-const container = document.getElementById("gameContainer");
+initialState();
 
 //Here i shorten the array to 10 and then after that i doble it to fit the array
 const shortenedCards = cards.slice(0, 10);
@@ -24,6 +37,7 @@ const cardsShuffled = doubled
 
 //Prints out the given values as cards on the website
 const renderGame = () => {
+	const container = document.getElementById("gameContainer");
 	cardsShuffled.forEach((card) => {
 		container.innerHTML += `
         <div class="card" id="${card.id}">
@@ -39,6 +53,7 @@ const renderGame = () => {
 };
 renderGame();
 
+//Apply eventlisteners to all cards
 const buttons = document.querySelectorAll(".card");
 const buttonFunctionality = () => {
 	buttons.forEach((card) => {
@@ -49,9 +64,7 @@ const buttonFunctionality = () => {
 };
 buttonFunctionality();
 
-//TODO: Disable eventlistener when a card is clicked so you can't match it with itself
-//Re-enable if they're not matching and flip card
-
+//Cardflip logic
 let cardFlips = 0;
 let cardA = 0;
 let cardB = 0;
@@ -80,7 +93,6 @@ const playGame = (card) => {
 			unFlip();
 		}, 750);
 	}
-	console.log(score);
 };
 
 const unFlip = () => {
@@ -91,7 +103,37 @@ const unFlip = () => {
 	cardA = 0;
 	cardB = 0;
 };
+let scoreboard = document.getElementById("score");
 
-//Score / timer
+//Start button
+const start = document.getElementById("startGame");
+start.addEventListener("click", () => {
+	const hideGame = document.getElementById("flexCenter");
+	start.style.display = "none";
+	hideGame.style.display = "";
+	timer();
+});
 
-const scoreboard = document.getElementById("score");
+//Timer
+
+const timer = () => {
+	const minutesLabel = document.getElementById("minutes");
+	const secondsLabel = document.getElementById("seconds");
+	let totalSeconds = 0;
+	setInterval(setTime, 1000);
+
+	function setTime() {
+		++totalSeconds;
+		secondsLabel.innerHTML = pad(totalSeconds % 60);
+		minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+	}
+
+	function pad(val) {
+		const valString = val + "";
+		if (valString.length < 2) {
+			return "0" + valString;
+		} else {
+			return valString;
+		}
+	}
+};
