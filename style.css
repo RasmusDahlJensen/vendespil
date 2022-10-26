@@ -3,15 +3,6 @@
   transition: transform 1s;
 }
 
-.flip {
-  transform: rotateY(180deg);
-  transition: transform 0.3s;
-}
-.flip .content {
-  transform: rotateY(180deg);
-  transition: transform 0.3s;
-}
-
 .back {
   transform: rotateY(180deg);
 }
