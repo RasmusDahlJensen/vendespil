@@ -35,10 +35,28 @@ let cardFlips = 0;
 let cardA = 0;
 let cardB = 0;
 const playGame = (card) => {
-	card.classList.add("flip");
-	cardA == 0 ? (cardA = card.id) : (cardB = card.id);
+	//Flipped card counter
 	cardFlips++;
-	if (cardFlips >= 2) {
+	console.log(cardFlips);
+
+	if (cardFlips <= 2) {
+		card.classList.add("flip");
+	}
+
+	//assigning the values
+	cardA == 0 ? (cardA = card.id) : (cardB = card.id);
+
+	//when two cards have been flipped:
+	if (cardFlips == 2) {
+		//If the values are matching then:
+		if (cardA == cardB) {
+			const flipped = document.querySelectorAll(".flip:not(.match)");
+			flipped.forEach((flip) => flip.classList.add("match"));
+		}
+		//Reset
+		cardFlips = 0;
+		cardA = 0;
+		cardB = 0;
 	}
 };
 
