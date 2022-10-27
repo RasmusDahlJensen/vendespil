@@ -136,7 +136,6 @@ const timer = () => {
 //Ending
 
 window.addEventListener("click", () => {
-	console.log(score);
 	if (score == 10) {
 		showScore();
 		playAgain();
