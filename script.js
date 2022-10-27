@@ -1,7 +1,7 @@
 import cards from "./cardArray.js";
 
 const difficulty = (difficulty) => {
-	//Intial site state
+	//Intial site state before the game is played
 	const initialState = () => {
 		const root = document.getElementById("root");
 		root.innerHTML += `
@@ -26,7 +26,7 @@ const difficulty = (difficulty) => {
 
 	initialState();
 
-	//Here i shorten the array to 10 and then after that i doble it to fit the array
+	//Here I modify the array depending on the difficulty choice
 	const shortenedCards = cards.slice(0, difficulty);
 	const doubled = shortenedCards.concat(shortenedCards);
 
@@ -37,7 +37,7 @@ const difficulty = (difficulty) => {
 		.sort((a, b) => a.sort - b.sort)
 		.map(({ card }) => card);
 
-	//Cardflip states
+	//The default states for the cardflips are defined here.
 	let cardFlips = 0;
 	let cardA = 0;
 	let cardB = 0;
@@ -47,6 +47,8 @@ const difficulty = (difficulty) => {
 		//Flipped card counter
 		cardFlips++;
 
+		//If the amount of cards that have been flipped are less than two, it'll flip them when clicked
+		//It has to be equal to or less or it bugs out, but it definitely just works on two
 		if (cardFlips <= 2) {
 			card.classList.add("flip");
 		}
@@ -54,7 +56,8 @@ const difficulty = (difficulty) => {
 		//assigning the values
 		cardA == 0 ? (cardA = card.id) : (cardB = card.id);
 
-		//when two cards have been flipped:
+		//when two cards have been flipped, they'll be matched with eachother, if they are matched they'll receive the
+		//"match" class to differentiate them
 		if (cardFlips == 2) {
 			if (cardA == cardB) {
 				score++;
@@ -87,7 +90,7 @@ const difficulty = (difficulty) => {
 	};
 	renderGame();
 
-	//Apply eventlisteners to all cards
+	//Apply eventlisteners to all cards with a forEach loop
 	const buttons = document.querySelectorAll(".card");
 	const buttonFunctionality = () => {
 		buttons.forEach((card) => {
@@ -100,6 +103,8 @@ const difficulty = (difficulty) => {
 	};
 	buttonFunctionality();
 
+	//When called it'll unflip every that that hasn't been matched - hence the :not selector
+	//And then rests the amount of card flips that's happening and also the comparison values
 	const unFlip = () => {
 		document.querySelectorAll(".card:not(.match)").forEach((card) => {
 			card.classList.remove("flip");
@@ -144,6 +149,7 @@ const difficulty = (difficulty) => {
 	});
 
 	const showScore = () => {
+		//Shows the end screen with a play again button
 		const buttonFlex = document.getElementsByClassName("flex");
 		const endScore = document.getElementById("showScore");
 		const start = document.getElementById("startGame");
@@ -158,15 +164,15 @@ const difficulty = (difficulty) => {
 		endScore.innerHTML = "Your score is: " + score;
 	};
 
+	//Hides the elements after the game is over
 	const playAgain = () => {
 		const hideGame = document.getElementById("flexCenter");
 		const start = document.getElementById("startGame");
 		start.style.display = "";
-		start.innerHTML = "Play again?";
 		hideGame.style.display = "none";
-		start.addEventListener("click", gameStart);
 	};
 
+	//Starts the game and the timer once its called
 	const gameStart = () => {
 		const hideGame = document.getElementById("flexCenter");
 		start.style.display = "none";
