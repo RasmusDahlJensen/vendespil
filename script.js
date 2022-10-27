@@ -36,37 +36,6 @@ const cardsShuffled = doubled
 	.sort((a, b) => a.sort - b.sort)
 	.map(({ card }) => card);
 
-//Prints out the given values as cards on the website
-const renderGame = () => {
-	const container = document.getElementById("gameContainer");
-	cardsShuffled.forEach((card) => {
-		container.innerHTML += `
-        <div class="card" id="${card.id}">
-            <div class="content">
-            <div class="front"></div>
-                <div class="back">
-                <img src="${card.picture}"/>
-                </div>
-            </div>
-        </div>
-        `;
-	});
-};
-renderGame();
-
-//Apply eventlisteners to all cards
-const buttons = document.querySelectorAll(".card");
-const compareThis = document.getElementById("comparethis");
-const buttonFunctionality = () => {
-	buttons.forEach((card) => {
-		card.addEventListener("click", () => {
-			playGame(event.target.parentElement.parentElement);
-			console.log(compareThis);
-		});
-	});
-};
-buttonFunctionality();
-
 //Cardflip logic
 let cardFlips = 0;
 let cardA = 0;
@@ -98,6 +67,38 @@ const playGame = (card) => {
 		}, 750);
 	}
 };
+
+//Prints out the given values as cards on the website
+const renderGame = () => {
+	const container = document.getElementById("gameContainer");
+	cardsShuffled.forEach((card) => {
+		container.innerHTML += `
+        <div class="card" id="${card.id}">
+            <div class="content">
+            <div class="front"></div>
+                <div class="back">
+                <img src="${card.picture}"/>
+                </div>
+            </div>
+        </div>
+        `;
+	});
+};
+renderGame();
+
+//Apply eventlisteners to all cards
+const buttons = document.querySelectorAll(".card");
+const buttonFunctionality = () => {
+	buttons.forEach((card) => {
+		card.addEventListener("click", () => {
+			console.log(card.classList);
+			if (card.classList == "card") {
+				playGame(event.target.parentElement.parentElement);
+			}
+		});
+	});
+};
+buttonFunctionality();
 
 const unFlip = () => {
 	document.querySelectorAll(".card:not(.match)").forEach((card) => {
