@@ -39,6 +39,26 @@ let cards = [
 		id: 10,
 		picture: "/img/cat.svg",
 	},
+	{
+		id: 11,
+		picture: "/img/beaver.svg",
+	},
+	{
+		id: 12,
+		picture: "/img/bunny.svg",
+	},
+	{
+		id: 13,
+		picture: "/img/moose.svg",
+	},
+	{
+		id: 14,
+		picture: "/img/owl.svg",
+	},
+	{
+		id: 15,
+		picture: "/img/squirrel.svg",
+	},
 ];
 
 export default cards;
