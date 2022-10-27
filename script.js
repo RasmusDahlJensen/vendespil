@@ -36,11 +36,11 @@ const cardsShuffled = doubled
 	.sort((a, b) => a.sort - b.sort)
 	.map(({ card }) => card);
 
-//Cardflip logic
+//Cardflip states
 let cardFlips = 0;
 let cardA = 0;
 let cardB = 0;
-let score = 0;
+let score = 9;
 
 const playGame = (card) => {
 	//Flipped card counter
@@ -91,7 +91,6 @@ const buttons = document.querySelectorAll(".card");
 const buttonFunctionality = () => {
 	buttons.forEach((card) => {
 		card.addEventListener("click", () => {
-			console.log(card.classList);
 			if (card.classList == "card") {
 				playGame(event.target.parentElement.parentElement);
 			}
@@ -140,7 +139,7 @@ window.addEventListener("click", () => {
 	if (score == 10) {
 		showScore();
 		playAgain();
-		console.log("resetted");
+		console.log("reset");
 	}
 });
 
@@ -157,10 +156,7 @@ const playAgain = () => {
 	start.style.display = "";
 	start.innerHTML = "Play again?";
 	hideGame.style.display = "none";
-	let cardFlips = 0;
-	let cardA = 0;
-	let cardB = 0;
-	let score = 0;
+	start.addEventListener("click", gameStart);
 };
 
 const gameStart = () => {
