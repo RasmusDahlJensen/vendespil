@@ -186,6 +186,7 @@ const difficulty = (difficulty) => {
 	start.addEventListener("click", () => {
 		location.reload();
 	});
+
 	gameStart();
 };
 
