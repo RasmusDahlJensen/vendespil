@@ -42,16 +42,19 @@ const difficulty = (difficulty) => {
 	let cardA = 0;
 	let cardB = 0;
 	let score = 0;
+	//TODO: add throttle variable - so you can only click two cards at once
 
 	const playGame = (card) => {
-		//Flipped card counter
-		cardFlips++;
-
 		//If the amount of cards that have been flipped are less than two, it'll flip them when clicked
 		//It has to be equal to or less or it bugs out, but it definitely just works on two
-		if (cardFlips <= 2) {
+		if (cardFlips <= 1) {
 			card.classList.add("flip");
 		}
+		if (cardFlips >= 2) {
+			return;
+		}
+		//Flipped card counter
+		cardFlips++;
 
 		//assigning the values
 		cardA == 0 ? (cardA = card.id) : (cardB = card.id);
@@ -66,9 +69,9 @@ const difficulty = (difficulty) => {
 				flipped.forEach((flip) => flip.classList.add("match"));
 			}
 			//Reset
-			resetState();
 			setTimeout(() => {
 				unFlip();
+				// resetState();
 			}, 750);
 		}
 	};
@@ -104,24 +107,19 @@ const difficulty = (difficulty) => {
 	};
 	buttonFunctionality();
 
-	//reset variable state.
-	const resetState = () => {
-		cardFlips = 0;
-		cardA = 0;
-		cardB = 0;
-	};
-
 	//When called it'll unflip every that that hasn't been matched - hence the :not selector
 	//And then rests the amount of card flips that's happening and also the comparison values
 	const unFlip = () => {
 		document.querySelectorAll(".card:not(.match)").forEach((card) => {
 			card.classList.remove("flip");
 		});
+		cardFlips = 0;
+		cardA = 0;
+		cardB = 0;
 	};
 	let scoreboard = document.getElementById("score");
 
 	//Timer
-
 	const timer = () => {
 		const minutesLabel = document.getElementById("minutes");
 		const secondsLabel = document.getElementById("seconds");
