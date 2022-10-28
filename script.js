@@ -42,7 +42,6 @@ const difficulty = (difficulty) => {
 	let cardA = 0;
 	let cardB = 0;
 	let score = 0;
-	//TODO: add throttle variable - so you can only click two cards at once
 
 	const playGame = (card) => {
 		//If the amount of cards that have been flipped are less than two, it'll flip them when clicked
