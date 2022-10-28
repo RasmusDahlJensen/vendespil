@@ -66,6 +66,7 @@ const difficulty = (difficulty) => {
 				flipped.forEach((flip) => flip.classList.add("match"));
 			}
 			//Reset
+			resetState();
 			setTimeout(() => {
 				unFlip();
 			}, 750);
@@ -77,11 +78,11 @@ const difficulty = (difficulty) => {
 		const container = document.getElementById("gameContainer");
 		cardsShuffled.forEach((card) => {
 			container.innerHTML += `
-			<div class="card" id="${card.id}">
+			<div style="user-select: none;" class="card" id="${card.id}">
 				<div class="content">
 				<div class="front"></div>
 					<div class="back">
-					<img src="${card.picture}"/>
+					<img draggable="false" src="${card.picture}"/>
 					</div>
 				</div>
 			</div>
@@ -94,14 +95,21 @@ const difficulty = (difficulty) => {
 	const buttons = document.querySelectorAll(".card");
 	const buttonFunctionality = () => {
 		buttons.forEach((card) => {
-			card.addEventListener("click", () => {
+			card.addEventListener("click", (event) => {
 				if (card.classList == "card") {
-					playGame(event.target.parentElement.parentElement);
+					playGame(event.currentTarget);
 				}
 			});
 		});
 	};
 	buttonFunctionality();
+
+	//reset variable state.
+	const resetState = () => {
+		cardFlips = 0;
+		cardA = 0;
+		cardB = 0;
+	};
 
 	//When called it'll unflip every that that hasn't been matched - hence the :not selector
 	//And then rests the amount of card flips that's happening and also the comparison values
@@ -109,9 +117,6 @@ const difficulty = (difficulty) => {
 		document.querySelectorAll(".card:not(.match)").forEach((card) => {
 			card.classList.remove("flip");
 		});
-		cardFlips = 0;
-		cardA = 0;
-		cardB = 0;
 	};
 	let scoreboard = document.getElementById("score");
 
