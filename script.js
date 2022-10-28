@@ -70,7 +70,7 @@ const difficulty = (difficulty) => {
 			//Reset
 			setTimeout(() => {
 				unFlip();
-				// resetState();
+				resetState();
 			}, 750);
 		}
 	};
@@ -106,15 +106,18 @@ const difficulty = (difficulty) => {
 	};
 	buttonFunctionality();
 
+	const resetState = () => {
+		cardFlips = 0;
+		cardA = 0;
+		cardB = 0;
+	};
+
 	//When called it'll unflip every that that hasn't been matched - hence the :not selector
 	//And then rests the amount of card flips that's happening and also the comparison values
 	const unFlip = () => {
 		document.querySelectorAll(".card:not(.match)").forEach((card) => {
 			card.classList.remove("flip");
 		});
-		cardFlips = 0;
-		cardA = 0;
-		cardB = 0;
 	};
 	let scoreboard = document.getElementById("score");
 
